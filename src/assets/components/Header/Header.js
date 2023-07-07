@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../assets/investment-calculator-logo.png';
+import logo from '../../../assets/Logo_Investment_cal.png';
 import classes from './Header.module.css';
 
 const Header = () => {

@@ -13,12 +13,12 @@ const UserInput = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
     props.onCalculate(userInput);
   };
 
   const resetHandler = () => {
     setUserInput(initialUserInput);
+    props.onReset(); 
   };
 
   const inputChangeHandler = (input, value) => {

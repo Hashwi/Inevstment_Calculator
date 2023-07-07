@@ -1,43 +1,55 @@
-import react, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./assets/components/Header/Header";
 import ResultsTable from "./assets/components/ResultsTable/ResultsTable";
 import UserInput from "./assets/components/UserInputs/UserInputs";
 
 function App() {
-  const [userInput, setUserInput] = useState(null);
+  const [userInputData, setUserInputData] = useState(null);
+  const [yearlyData, setYearlyData] = useState([]);
 
-  const calculateHandler = (userInput) => {
-    setUserInput(userInput);
+  const calculateHandler = (userInputData) => {
+    setUserInputData(userInputData);
   };
 
-  const yearlyData = [];
+  const resetHandler = () => {
+    setYearlyData([]);
+    setUserInputData(null);   
+  };
 
-  if (userInput) {
-    let currentSavings = +userInput['current-savings'];
-    const yearlyContribution = +userInput['yearly-contribution'];
-    const expectedReturn = +userInput['expected-return'] / 100;
-    const duration = +userInput['duration'];
+  useEffect(() => {
+    if (userInputData) {
+      let currentSavings = +userInputData["current-savings"];
+      const yearlyContribution = +userInputData["yearly-contribution"];
+      const expectedReturn = +userInputData["expected-return"] / 100;
+      const duration = +userInputData["duration"];
 
-    for (let i = 0; i < duration; i++) {
-      const yearlyInterest = currentSavings * expectedReturn;
-      currentSavings += yearlyInterest + yearlyContribution;
-      yearlyData.push({
-        year: i + 1,
-        yearlyInterest: yearlyInterest,
-        savingsEndOfYear: currentSavings,
-        yearlyContribution: yearlyContribution,
-      });
+      const updatedYearlyData = [];
+      console.log(updatedYearlyData)
+
+      for (let i = 0; i < duration; i++) {
+        const yearlyInterest = currentSavings * expectedReturn;
+        currentSavings += yearlyInterest + yearlyContribution;
+        updatedYearlyData.push({
+          key: i.toString() + Math.random(),
+          year: i + 1,
+          yearlyInterest: yearlyInterest,
+          savingsEndOfYear: currentSavings,
+          yearlyContribution: yearlyContribution,
+        });
+      }
+
+      setYearlyData(updatedYearlyData);
     }
-  }
+  }, [userInputData]);
+
+ 
 
   return (
     <div>
       <Header />
-
-      <UserInput onCalculate={calculateHandler} />
-
-      {!userInput && <p style={{textAlign: 'center'}}>No investment calculated yet.</p>}
-      {userInput && <ResultsTable data={yearlyData} initialInvestment={userInput['current-savings']} />}
+      <UserInput onReset={resetHandler} onCalculate={calculateHandler} />
+      {!userInputData && <p style={{ textAlign: "center" }}>No investment calculated yet.</p>}
+      {userInputData && <ResultsTable data={yearlyData} initialInvestment={userInputData["current-savings"]} />}
     </div>
   );
 }

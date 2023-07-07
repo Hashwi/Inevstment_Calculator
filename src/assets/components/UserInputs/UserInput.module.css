@@ -3,7 +3,7 @@
     max-width: 30rem;
     margin: 2rem auto;
     border-radius: 4px;
-    background: linear-gradient(180deg, #307e6c, #2b996d);
+    background: #ffffff;
   }
   
   .input-group {
@@ -24,10 +24,10 @@
   .form input {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #76c0ae;
+    border: 1px solid #094394;
     border-radius: 0.25rem;
     background-color: transparent;
-    color: #c2e9e0;
+    color: #011011;
     font-size: 1rem;
   }
   
@@ -41,25 +41,28 @@
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.25rem;
-    background: linear-gradient(180deg, #1f584b, #17493d);
-    color: #c2e9e0;
+    background: #c2e9e0;
+    color:#17493d;
     font-family: 'Roboto Condensed', sans-serif;
     cursor: pointer;
   }
   
   .buttonAlt {
-    font-family: 'Roboto Condensed', sans-serif;
+    padding: 0.5rem 1rem;
     border: none;
-    background: transparent;
-    color: #c2e9e0;
+    border-radius: 0.25rem;
+    background:#faf5e2;
+    color: #fbc101;
+    font-family: 'Roboto Condensed', sans-serif;
     cursor: pointer;
   }
   
   .button:hover {
-    background: linear-gradient(180deg, #1b5346, #113c32);
+    background: #17493d;
+    color: #c2e9e0;
   }
   
   .buttonAlt:hover {
-    background: transparent;
-    color: #91e1d0;
+    background: #f3a719;
+    color: #c2e9e0;
   }
